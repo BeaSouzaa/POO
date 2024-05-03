@@ -1,0 +1,98 @@
+import java.util.Scanner;
+
+public class Main
+{
+  public static void main (String[]args)
+  {
+	Scanner scanner = new Scanner (System.in);
+	BankAccount bankAccount = new BankAccount ();
+
+	  System.out.println ("Bem-vindo ao Sistema BancC!rio!");
+
+	  System.out.println ("Qual C) o seu nome? ");
+	String nome = scanner.nextLine ();	//Faz a leitura do nome do cliente
+
+	  System.out.println ("Qual C) o seu sobrenome? ");
+	String sobrenome = scanner.nextLine ();	//Faz a leitura do sobrenome do cliente
+
+	  System.out.println ("OlC!, " + nome + " " + sobrenome + "!");
+
+	  System.out.println ("Por favor, digite o seu CPF: ");
+	String cpf = scanner.nextLine ();
+
+
+
+
+
+	boolean sair = false;
+	do
+	  {
+		exibirMenu ();
+		int escolha = scanner.nextInt ();
+
+		switch (escolha)
+		  {
+		  case 1:
+			bankAccount.consultarSaldo ();
+
+			break;
+			case 2:System.out.print ("Digite o valor do depC3sito: ");
+			double deposito = scanner.nextDouble ();
+			  bankAccount.depositar (deposito);
+			  break;
+			case 3:System.out.print ("Digite o valor do saque: ");
+			double saque = scanner.nextDouble ();
+			  bankAccount.sacar (saque);
+			  break;
+			case 4:sair = true;
+			  break;
+			default:System.out.
+			  println ("OpC'C#o invC!lida. Por favor, escolha novamente.");
+		  }
+	  }
+	while (!sair);
+
+	System.out.println ("Obrigado por usar nosso sistema bancC!rio!");
+	scanner.close ();
+  }
+
+  public static void exibirMenu ()
+  {
+	System.out.println ("\nSelecione uma opC'C#o:");
+	System.out.println ("1 - Consultar saldo");
+	System.out.println ("2 - Realizar depC3sito");
+	System.out.println ("3 - Realizar saque");
+	System.out.println ("4 - Encerrar");
+  }
+}
+
+class BankAccount
+{
+  private double saldo;
+
+  public void consultarSaldo ()
+  {
+	System.out.println ("Saldo atual: R$" + saldo);
+  }
+
+  public void depositar (double valor)
+  {
+	saldo += valor;
+	System.out.println ("DepC3sito de R$" + valor +
+						" realizado com sucesso.");
+  }
+
+  public void sacar (double valor)
+  {
+	if (valor > saldo)
+	  {
+		System.out.println ("Saldo insuficiente.");
+	  }
+	else
+	  {
+		saldo -= valor;
+		System.out.println ("Saque de R$" + valor +
+							" realizado com sucesso.");
+	  }
+  }
+}
